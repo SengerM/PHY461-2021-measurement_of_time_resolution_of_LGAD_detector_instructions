@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Measurement of the time resolution of an LGAD detector</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- This fixes the problem of small font (some texts and also the math) in mobile devices, see https://stackoverflow.com/a/35564095/8849755 -->
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/style.css">
+	<link rel="stylesheet" href="https://sengerm.github.io/html-academic-publishing/css_and_scripts/CommentBox.css">
+	<!-- Math support https://www.mathjax.org/#gettingstarted -->
+    <script>
+	MathJax = {
+	  tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  },
+	  svg: {
+		fontCache: 'global'
+	  }
+	};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div id="document_title"></div>
+
+<author>Matías Senger</author>
+
+<p>Lab activity for the course <a href="https://www.physik.uzh.ch/en/teaching/PHY461/HS2021.html"><em>PHY461 Experimental Methods in Particle Physics, fall semester 2021</em></a>. Contact information in <a href="https://msenger.web.cern.ch/contact/">this link</a>.</p>
+
+<!--
+<div style="margin: 22px; text-align: center;">September 8<sup>th</sup>, 2021</div>
+-->
+
+<div id="table-of-contents">
+	<h2 class="unnumbered">Contents</h2>
+</div>
+
+<siglas class="definition" first="________" short="___"></siglas>
+<siglas class="definition" first="Low Gain Avalanche Diode (LGAD)" short="LGAD"></siglas>
+<siglas class="definition" first="Minimum Ionizing Particle (MIP)" short="MIP"></siglas>
+<siglas class="definition" first="Large Hadron Collider (LHC)" short="LHC"></siglas>
+
+<h1>Introduction</h1>
+
+<p>The <siglas>LHC</siglas> is a particle accelerator that collides protons at a very high energy to test the standard model of particle physics. Along the <siglas>LHC</siglas> we find a number of detectors<footnote>In <a href="https://home.cern/science/experiments">this link</a> you can find a list of detectors/experiments installed in the <siglas>LHC</siglas>.</footnote> that are constantly monitoring what happens in each proton colision, i.e. they detect the particles that are created in these collisions. The <siglas>LHC</siglas> is going to be upgraded in the near future<footnote>See <a href="https://hilumilhc.web.cern.ch/content/hl-lhc-project">this link</a> if you are curious, in the figure with the "LHC/HL-LHC Plan" look for "LS3" or "long shutdown 3" between 2025 and 2027. You can see that after this, when the <siglas>LHC</siglas> is turned on again, the luminosity is planned to be 5-7.5 times the nominal luminosity.</footnote> to significantly increase the number of collisions per unit time, thus allowing much higher data to be collected in order to test the standard model. The price to pay is that the density of collision events now so high that the detectors have to be upgraded to maintain their performance<footnote>Imagine that for some reason the Sun becomes 7 times more powerful. You will have to upgrade your eyes if you want to keep on seeing as now.</footnote>.</p>
+
+<p>To deal with this higher luminosity that the <siglas>LHC</siglas> will deliver, the experiments will add time resolution to their tracking sub-systems. This time resolution will be implemented using <siglas>LGAD</siglas> detectors (for charged particles) which have poor spacial resolution but provide a very high time resolution on the order of 10&nbsp;ps. This means that each time a charged particle passes through an <siglas>LGAD</siglas> detector its time of arrival can be determined with high accuracy. </p>
+
+<h2>Principles of operation of <siglas>LGAD</siglas> detectors</h2>
+
+<p><siglas>LGAD</siglas>s are silicon detectors and they look very similar to the one shown in <crossref toid="Figure: Picture of silicon detector mounted"></crossref>. Here we see two microscope pictures, in the left a wide view of the detector mounted in the readout board and in the right a detail of the detector. As can be seen in the picture at the right, the detector has three electrical connections:
+<ol>
+	<li>Readout pad: Here is where the signal is read.</li>
+	<li>The back side: Where the bias voltage is applied.</li>
+	<li>The guard ring: It is used to produce a uniform electric field below the readout pad, and to fix some edge effects.</li>
+</ol>
+In <crossref toid="Figure: Scheme of MIP impinging in silicon detector"></crossref> it is shown a diagram with the electrical circuit. The silicon detector is shown as cut in half through the side. Here we see a <siglas>MIP</siglas><footnote>A <siglas>MIP</siglas> is a charged particle with such an energy than when it passes through matter it produces a minimum ionization.It turns out that most of the (charged) particles after a collision in the <siglas>LHC</siglas> are of this type. You can read more <a href="https://en.wikipedia.org/wiki/Stopping_power_(particle_radiation)#Minimum_ionizing_particle">here</a>. However, for us a <siglas>MIP</siglas> is just a charged particle that we want to detect.</footnote> passing through the silicon detector. This particle produces electron-hole pairs (i.e. ionizes the silicon) which cannot recombine due to the presence of the electric field after the applied bias voltage. The charge carriers drift to the collection electrodes, i.e. the readout pad and the back side, and produce an electrical current that we can measure with an oscilloscope and so detect the passage of the particle. An example of a signal produced by an <siglas>LGAD</siglas> detector when a <siglas>MIP</siglas> impinges on it is shown in <crossref toid="Figure: LGAD signal example"></crossref>.</p>
+
+<float class="Figure" id="Figure: Picture of silicon detector mounted">
+	<image style="max-width: 100%;" src="media/picture_of_silicon_detector.svg"></image>
+	<floatcaption>Left: Picture of a silicon detector mounted in the readout board. Right: Detail of the silicon detector with some annotations. The detector in these pictures is not an <siglas>LGAD</siglas> but a PIN diode, however <siglas>LGAD</siglas> detectors look identical to this one.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: Scheme of MIP impinging in silicon detector">
+	<image style="max-width: 100%;" src="media/MIP_in_silicon_detector.svg"></image>
+	<floatcaption>Diagram of a <siglas>MIP</siglas> impinging on a silicon detector. The <siglas>MIP</siglas> produces charge carriers in the silicon<footnote>Electron-hole pairs.</footnote> and due to the presence of the electric field $\boldsymbol{E}$ they cannot recombine. Thus, the charge carriers drift to the electrodes, produce an electric current, we measure this with the oscilloscope and the <siglas>MIP</siglas> is detected.</floatcaption>
+</float>
+
+<float class="Figure" id="Figure: LGAD signal example">
+	<iframe class="plotly" src="media/lgad_signal_example.html"></iframe>
+	<floatcaption>Example of the signal from an <siglas>LGAD</siglas> detector produced by a <siglas>MIP</siglas> with some parameters indicated. (Click the elements in the legend to hide them.)</floatcaption>
+</float>
+
+<h1>Measuring the time resolution</h1>
+
+<p>Consider a signal as the one shown in <crossref toid="Figure: LGAD signal example"></crossref>. The time information can be extracted by looking at the rising edge of the pulse. We can define, for example, the quantity $t_{50}$ which is the time at which the signal is at the 50&nbsp;% of its value (within the rising edge), and consider this as the time of arrival of the <siglas>MIP</siglas>. In this way, if we were to have a controlled source of <siglas>MIP</siglas>s such that we know precisely the time of emission of each particle $t_\text{emission}^{(i)}$ and we measure the quantity $t_{50}^{(i)} - t_\text{emission}^{(i)}$, we can determine the time resolution of our detector because all the fluctuations are going to be due to $t_{50}$<footnote>Remember that we are now considering an ideal "controlled" source of particles, thus $t_\text{emission}^{(i)}$ has no fluctuations.</footnote>. However, ideal and controlled sources of <siglas>MIP</siglas>s do not exist<footnote>Or at least we don't have one in our lab.</footnote>, so we must proceed in another way.</p>
+
+<p>Consider two detectors placed one after the other in such a way that an incoming particle first hits on detector, and then the other. With this configuration, we can measure the difference 
+	$$\Delta t_{50} = t_{50,A} - t_{50,B}$$
+where $t_{50,A}$ and $t_{50,B}$ are the times at the 50&nbsp;% of the rising edge for each detector $A$ and $B$ respectively. The fluctuations in this quantity are going to be of the form 
+	$$\sigma_{\Delta t_{50}}^2 \approx \sigma_A^2 + \sigma_B^2 + \sigma_\text{particle speed}^2 + \sigma_\text{instrument}$$
+where $\sigma_A$ and $\sigma_B$ are contributions intrinsic from each detector, $\sigma_\text{particle speed}$ are fluctuations produced because the particles may have different speed, thus the time they take to go from one detector to the other is different, and $\sigma_\text{instrument}$ is the contribution from the measuring setup. If the detectors are close enough then $\sigma_\text{particle speed}$ can be made negligible<footnote>This is because the time it takes for the particle to traverse the distance between one detector and the other is almost zero.</footnote>, and this is what we are going to assume here. We are also assuming that the contribution from the instrument can be neglected, i.e. $\sigma_\text{instrument} \approx 0$. Thus, we are left with the expression 
+	$$\sigma_{t_{50}}^2 \approx \sigma_A^2 + \sigma_B^2\text{.}$$
+Furthermore, if the two detectors are identical it is reasonable to assume that 
+	$$\sigma_A \approx \sigma_B$$
+and so combining this with the previous equation we obtain
+	<equation id="Equation: sigma of the detector is sigma measured over sqrt2">$$\sigma_\text{detector} \approx \frac{\sigma_{t_{50}}}{\sqrt{2}}\text{.}$$</equation>
+This is the equation we are going to use to measure the time resolution of the detector<footnote>In real life this is more complicated as, for instance, there is no a priori reason for using the $t_{50}$, one can use other values like $t_{60}$. We are not dealing with these complications in this laboratory practice though.</footnote>.</p>
+
+<h1>The lab activity</h1>
+
+<p>The activity is planned to last about two hours, and is going to be guided by Matías (that's me). During this time you will familiarize with the setup, observe signals produced by <siglas>MIP</siglas>s in the detectors, and we are trying to perform a quick measurement of the time resolution of <siglas>LGAD</siglas> detectors.</p>
+
+<p>The measuring setup is composed by
+	<ul>
+		<li>Two <siglas>LGAD</siglas> research detectors, mounted in readout boards.</li>
+		<li>A high voltage power supply to provide the bias voltage.</li>
+		<li>A high bandwidth oscilloscope to measure the signals from the detectors.</li>
+		<li>A radioactive Sr-90 source.</li>
+	</ul>
+I will show you how to connect and assemble everything once we are in the lab. You use the oscilloscope to measure the output of the two <siglas>LGAD</siglas>s while irradiating them with the Sr-90 source, and from here use <crossref toid="Equation: sigma of the detector is sigma measured over sqrt2"></crossref> to determine the temporal resolution of the two detectors.</p>
+
+<p><b>Before coming to the lab</b> it would be nice to think about the following questions:
+	<ol>
+		<li>From the diagram in <crossref toid="Figure: Scheme of MIP impinging in silicon detector"></crossref>, do you expect positive or negative voltage signals in the oscilloscope?</li>
+		<li>What kind of particle does the Sr-90 source emits?</li>
+	</ol>
+</p>
+
+<!--
+<div id="references_list">
+	<h1 class="unnumbered">References</h1>
+	<reference id="Reference: _____">Bla bla bla.</reference>
+</div>
+-->
+
+<div id="footnotes_list">
+	<h1 class="unnumbered">Footnotes</h2>
+</div>
+
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/script.js"></script>
+<script src="https://sengerm.github.io/html-academic-publishing/css_and_scripts/authors.js"></script>
+</body>
+
+</html>
